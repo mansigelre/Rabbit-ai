@@ -2,7 +2,7 @@
   "name": "Sales Insight Automator",
   "description": "AI-powered backend service for processing sales data and generating executive summaries",
   "engines": {
-    "node": "18.x",
+    "node": "24.x",
     "python": "3.11"
   },
   "scripts": {
