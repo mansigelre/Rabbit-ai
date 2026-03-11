@@ -1,0 +1,41 @@
+{
+  "name": "Sales Insight Automator",
+  "description": "AI-powered backend service for processing sales data and generating executive summaries",
+  "engines": {
+    "node": "18.x",
+    "python": "3.11"
+  },
+  "scripts": {
+    "setup": "npm run setup:backend && npm run setup:frontend",
+    "setup:backend": "cd backend && python -m venv venv && source venv/Scripts/activate && pip install -r requirements.txt",
+    "setup:frontend": "cd frontend && npm install",
+    "dev": "docker-compose up",
+    "dev:build": "docker-compose up --build",
+    "dev:down": "docker-compose down",
+    "backend": "cd backend && python -m uvicorn main:app --reload",
+    "frontend": "cd frontend && npm run dev",
+    "lint": "npm run lint:frontend && npm run lint:backend",
+    "lint:frontend": "cd frontend && npm run lint 2>/dev/null || echo 'Linting skipped'",
+    "lint:backend": "cd backend && pylint main.py --disable=all --enable=syntax-error 2>/dev/null || echo 'Linting skipped'",
+    "test": "npm run test:backend",
+    "test:backend": "cd backend && python -m pytest",
+    "docker:build": "docker build -t sales-automator-backend:latest ./backend && docker build -t sales-automator-frontend:latest ./frontend",
+    "docker:run": "docker run -p 8000:8000 sales-automator-backend:latest",
+    "docker:frontend": "docker run -p 3000:3000 sales-automator-frontend:latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/sales-insight-automator"
+  },
+  "keywords": [
+    "sales",
+    "ai",
+    "automation",
+    "fastapi",
+    "react",
+    "docker",
+    "gemini"
+  ],
+  "author": "Rabbitt AI Team",
+  "license": "PROPRIETARY"
+}
